@@ -896,6 +896,47 @@ const todayHours = {
 const statusEls = [document.getElementById('todayStatus'), document.getElementById('hoursStatus')];
 statusEls.forEach(el => { if (el) el.textContent = todayHours[today] || 'Open'; });
 </script>
+</script>   <!-- your original script ends -->
 
+<!-- 🔥 NEW 3D / 4D SCRIPT -->
+<script>
+// 🔥 3D TILT EFFECT
+document.querySelectorAll('.tilt').forEach(card => {
+  card.addEventListener('mousemove', (e) => {
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    const rotateX = ((y / rect.height) - 0.5) * -10;
+    const rotateY = ((x / rect.width) - 0.5) * 10;
+
+    card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.03)`;
+  });
+
+  card.addEventListener('mouseleave', () => {
+    card.style.transform = `rotateX(0deg) rotateY(0deg) scale(1)`;
+  });
+});
+
+// 🔥 HERO PARALLAX
+window.addEventListener("scroll", () => {
+  const hero = document.querySelector(".hero-bg");
+  if (!hero) return;
+
+  let scroll = window.scrollY;
+  hero.style.transform = `translateY(${scroll * 0.2}px) scale(1.05)`;
+});
+
+// 🔥 4D MOUSE DEPTH
+document.addEventListener("mousemove", (e) => {
+  const x = (e.clientX / window.innerWidth - 0.5) * 10;
+  const y = (e.clientY / window.innerHeight - 0.5) * 10;
+
+  document.body.style.transform = `translate(${x}px, ${y}px)`;
+});
+</script>
+
+</body>
+</html>
 </body>
 </html>
