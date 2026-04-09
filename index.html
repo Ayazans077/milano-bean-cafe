@@ -334,6 +334,38 @@
       .strip { flex-direction: column; gap: 0; }
       .strip-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.08); width: 100%; }
       .form-row { grid-template-columns: 1fr; }
+  /* 🔥 ADD THIS HERE */
+@media (max-width: 768px) {
+
+  nav { padding: 12px 20px; }
+
+  .nav-links { display: none; }
+
+  .nav-right { gap: 8px; }
+
+  .hero {
+    flex-direction: column;
+    text-align: center;
+    padding: 100px 20px 40px;
+  }
+
+  .menu-section {
+    flex-direction: column;
+    width: 100%;
+    padding: 20px;
+  }
+
+  .menu-card {
+    width: 100%;
+  }
+
+  .cart {
+    width: 100%;
+  }
+
+}
+
+338 </style>
     }
   </style>
 </head>
