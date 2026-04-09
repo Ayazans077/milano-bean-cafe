@@ -28,7 +28,21 @@
       color: var(--text);
       overflow-x: hidden;
     }
+/* 🔥 3D HOVER EFFECT */
+.tilt {
+  transform-style: preserve-3d;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
 
+.tilt:hover {
+  box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+}
+
+/* 🔥 PARALLAX HERO */
+.hero-bg {
+  will-change: transform;
+  transition: transform 0.2s ease-out;
+}
     /* ── NAV ── */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 200;
