@@ -152,27 +152,76 @@ nav {
 
 <script>
 
-// SAMPLE MENU (we'll upgrade later)
-const menuItems = [
-  { name: "Latte", desc: "Creamy espresso drink", price: "$4.50" },
-  { name: "Cappuccino", desc: "Rich foam coffee", price: "$4.75" },
-  { name: "Mocha", desc: "Chocolate espresso", price: "$5.25" }
-];
+// 🔥 YOUR REAL MENU DATA (SHORTENED FOR NOW)
+const menuData = {
+  "Hot Coffee": [
+    { name: "Latte", desc: "Creamy espresso drink", price: "$4.50" },
+    { name: "Cappuccino", desc: "Rich foam coffee", price: "$4.75" },
+    { name: "Americano", desc: "Classic black coffee", price: "$3.50" }
+  ],
+  "Desserts": [
+    { name: "Cheesecake", desc: "Creamy and rich", price: "$6.50" },
+    { name: "Tiramisu", desc: "Italian classic", price: "$7.00" }
+  ]
+};
 
 const grid = document.getElementById("menuGrid");
 
-menuItems.forEach(item => {
-  const card = document.createElement("div");
-  card.className = "card";
+// CREATE TABS
+const tabsContainer = document.createElement("div");
+tabsContainer.style.marginBottom = "30px";
+tabsContainer.style.display = "flex";
+tabsContainer.style.gap = "10px";
 
-  card.innerHTML = `
-    <h3>${item.name}</h3>
-    <p>${item.desc}</p>
-    <div class="price">${item.price}</div>
-  `;
+document.querySelector(".menu").insertBefore(tabsContainer, grid);
 
-  grid.appendChild(card);
+// FUNCTION TO RENDER MENU
+function renderMenu(category) {
+  grid.innerHTML = "";
+
+  menuData[category].forEach(item => {
+    const card = document.createElement("div");
+    card.className = "card";
+
+    card.innerHTML = `
+      <h3>${item.name}</h3>
+      <p>${item.desc}</p>
+      <div class="price">${item.price}</div>
+    `;
+
+    grid.appendChild(card);
+  });
+}
+
+// CREATE TAB BUTTONS
+Object.keys(menuData).forEach((cat, index) => {
+  const btn = document.createElement("button");
+  btn.textContent = cat;
+
+  btn.style.padding = "10px 18px";
+  btn.style.border = "none";
+  btn.style.borderRadius = "20px";
+  btn.style.cursor = "pointer";
+  btn.style.background = index === 0 ? "#c9a050" : "#222";
+  btn.style.color = index === 0 ? "#000" : "#fff";
+
+  btn.onclick = () => {
+    document.querySelectorAll("button").forEach(b => {
+      b.style.background = "#222";
+      b.style.color = "#fff";
+    });
+
+    btn.style.background = "#c9a050";
+    btn.style.color = "#000";
+
+    renderMenu(cat);
+  };
+
+  tabsContainer.appendChild(btn);
 });
+
+// LOAD FIRST CATEGORY
+renderMenu(Object.keys(menuData)[0]);
 
 </script>
 
