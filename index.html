@@ -1086,59 +1086,6 @@ const menuData = {
   ],
 };
 
-// Build menu tabs & panels
-
-var CATEGORY_PHOTOS = {
-  'Hot Coffee': 'https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=400&h=240&fit=crop&auto=format&q=80',
-  'Iced Coffee': 'https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=400&h=240&fit=crop&auto=format&q=80',
-  'Tea & Matcha': 'https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=400&h=240&fit=crop&auto=format&q=80',
-  'Smoothies': 'https://images.unsplash.com/photo-1553530979-7ee52a2670c4?w=400&h=240&fit=crop&auto=format&q=80',
-  'Specialty Drinks': 'https://images.unsplash.com/photo-1551024709-8f23befc6f87?w=400&h=240&fit=crop&auto=format&q=80',
-  'Cake Slices': 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400&h=240&fit=crop&auto=format&q=80',
-  'Muffins': 'https://images.unsplash.com/photo-1587668178277-295251f900ce?w=400&h=240&fit=crop&auto=format&q=80',
-  'Pastries': 'https://images.unsplash.com/photo-1549490349-8643362247b5?w=400&h=240&fit=crop&auto=format&q=80',
-  'Croissants': 'https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=400&h=240&fit=crop&auto=format&q=80',
-  'Crepes & Waffles': 'https://images.unsplash.com/photo-1513442542250-854d436a73f2?w=400&h=240&fit=crop&auto=format&q=80',
-  'Brownies': 'https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=400&h=240&fit=crop&auto=format&q=80',
-  'Viral Desserts': 'https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=400&h=240&fit=crop&auto=format&q=80',
-  'Savory Food': 'https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=400&h=240&fit=crop&auto=format&q=80',
-  'Drinks': 'https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=400&h=240&fit=crop&auto=format&q=80'
-};
-
-var ITEM_PHOTOS = {
-  'Espresso': 'https://images.unsplash.com/photo-1510591509098-f4fdc6d0ff04?w=400&h=240&fit=crop&auto=format&q=80',
-  'Cappuccino': 'https://images.unsplash.com/photo-1572442388796-11668a67e53d?w=400&h=240&fit=crop&auto=format&q=80',
-  'Latte': 'https://images.unsplash.com/photo-1561047029-3000c68339ca?w=400&h=240&fit=crop&auto=format&q=80',
-  'Macchiato': 'https://images.unsplash.com/photo-1485808191679-5f86510bd9d4?w=400&h=240&fit=crop&auto=format&q=80',
-  'Hot Chocolate': 'https://images.unsplash.com/photo-1542990253-0d0f5be5f0ed?w=400&h=240&fit=crop&auto=format&q=80',
-  'Dirty Chai Latte': 'https://images.unsplash.com/photo-1571658735912-e8f4e2a36a0e?w=400&h=240&fit=crop&auto=format&q=80',
-  'Iced Mocha': 'https://images.unsplash.com/photo-1586201375761-83865001e31c?w=400&h=240&fit=crop&auto=format&q=80',
-  'Frappuccino': 'https://images.unsplash.com/photo-1614178842652-9f5a6d6d41d4?w=400&h=240&fit=crop&auto=format&q=80',
-  'Dubai Chocolate Latte': 'https://images.unsplash.com/photo-1549007994-cb92caebd54b?w=400&h=240&fit=crop&auto=format&q=80',
-  'Cookie Crave Frappe 🍪': 'https://images.unsplash.com/photo-1499636136210-6f4ee915583e?w=400&h=240&fit=crop&auto=format&q=80',
-  'Tiramisu Lover Special': 'https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?w=400&h=240&fit=crop&auto=format&q=80',
-  'Baklava Cheese Cake ⭐': 'https://images.unsplash.com/photo-1519676867240-f03562e64548?w=400&h=240&fit=crop&auto=format&q=80',
-  'Tiramisu': 'https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?w=400&h=240&fit=crop&auto=format&q=80',
-  'Tiramisu Cheesecake': 'https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?w=400&h=240&fit=crop&auto=format&q=80',
-  'Viral Tiramisú Cup': 'https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?w=400&h=240&fit=crop&auto=format&q=80',
-  'Plain / Butter Croissant': 'https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=400&h=240&fit=crop&auto=format&q=80',
-  'Pistachio Croissant': 'https://images.unsplash.com/photo-1608198093002-ad4e005484ec?w=400&h=240&fit=crop&auto=format&q=80',
-  'Nutella Croissant': 'https://images.unsplash.com/photo-1579697096985-41fe1430e5df?w=400&h=240&fit=crop&auto=format&q=80',
-  'Thick Golden Waffle': 'https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=400&h=240&fit=crop&auto=format&q=80',
-  'Dubai Chocolate Dream Waffle': 'https://images.unsplash.com/photo-1624353365286-3f8d62daad51?w=400&h=240&fit=crop&auto=format&q=80',
-  'Buttery Golden Crepe': 'https://images.unsplash.com/photo-1519676867240-f03562e64548?w=400&h=240&fit=crop&auto=format&q=80',
-  'Dubai Chocolate Brownie': 'https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=400&h=240&fit=crop&auto=format&q=80',
-  'Warm Pistachio Kunafa': 'https://images.unsplash.com/photo-1577219491135-ce391730fb2c?w=400&h=240&fit=crop&auto=format&q=80',
-  'Viral Dubai Chocolate Bar ⭐': 'https://images.unsplash.com/photo-1549007994-cb92caebd54b?w=400&h=240&fit=crop&auto=format&q=80',
-  'Original Baklava': 'https://images.unsplash.com/photo-1519676867240-f03562e64548?w=400&h=240&fit=crop&auto=format&q=80',
-  'Long Island Bagel': 'https://images.unsplash.com/photo-1509440159596-0249088772ff?w=400&h=240&fit=crop&auto=format&q=80',
-  'Jamaican Beef Patty (Halal)': 'https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?w=400&h=240&fit=crop&auto=format&q=80',
-  'Spinach Pie': 'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=400&h=240&fit=crop&auto=format&q=80',
-  'Red Bull': 'https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=400&h=240&fit=crop&auto=format&q=80',
-  'Fiji Water': 'https://images.unsplash.com/photo-1548839140-29a749e1cf4d?w=400&h=240&fit=crop&auto=format&q=80'
-};
-
-
 function getMenuImg(category, name) {
   if (ITEM_PHOTOS[name]) return ITEM_PHOTOS[name];
   if (CATEGORY_PHOTOS[category]) return CATEGORY_PHOTOS[category];
