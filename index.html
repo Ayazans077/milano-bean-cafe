@@ -1115,11 +1115,18 @@ for (const [cat, items] of Object.entries(menuData)) {
       var badgeHtml = isBest ? '<span class="menu-card-badge">Best Seller</span>' :
                       isNew  ? '<span class="menu-card-badge" style="background:#5adc8a;color:#0a1a0e">New</span>' : '';
       c.innerHTML =
-        '<div class="menu-card-img">' +
-          (imgSrc
-            ? '<img src="' + imgSrc + '" alt="' + name + '" loading="lazy">'
-            : '<div class="menu-card-img-placeholder">' + getEmoji(name) + '</div>') +
-          badgeHtml +
+        '<div class="menu-img-wrapper">' +
+
+  '<img class="menu-img" id="img-' + name + '" />' +
+
+  '<input type="file" accept="image/*" class="img-upload" ' +
+  'onchange="handleImageUpload(event, \'' + name + '\')">' +
+
+  '<div class="upload-overlay">Upload Image</div>' +
+
+  badgeHtml +
+
+'</div>' +
         '</div>' +
         '<div class="menu-card-body">' +
           '<div class="menu-card-info">' +
