@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -640,6 +639,36 @@
 .menu-card-img input[type=file] {
   display: none;
 }
+
+
+
+
+
+
+/* ── SAVE MY PHOTOS BUTTON ── */
+.save-photos-btn {
+  position: fixed;
+  bottom: 24px;
+  left: 24px;
+  z-index: 9999;
+  background: var(--gold);
+  color: #0a1a0e;
+  border: none;
+  border-radius: 50px;
+  padding: 12px 22px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 4px 18px rgba(0,0,0,.45);
+  transition: background .2s, transform .15s;
+}
+.save-photos-btn:hover { background: var(--gold-light); transform: translateY(-2px); }
+.save-photos-btn svg { width:16px; height:16px; stroke:#0a1a0e; fill:none; stroke-width:2.2; stroke-linecap:round; stroke-linejoin:round; }
 
 </style>
 </head>
@@ -1657,6 +1686,64 @@ setTimeout(initTilt, 400);
     if (e.target.closest('.tab-btn')) {
       setTimeout(initAllCards, 120);
     }
+  });
+})();
+
+
+
+
+
+
+// ── EXPORT WITH MY PHOTOS ─────────────────────────────────────────────────────
+(function() {
+  // Create floating button
+  var btn = document.createElement('button');
+  btn.className = 'save-photos-btn';
+  btn.innerHTML = '<svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Save My Photos';
+  document.body.appendChild(btn);
+
+  btn.addEventListener('click', function() {
+    btn.innerHTML = '<svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Saving...';
+    btn.disabled = true;
+
+    // Load saved photos from localStorage
+    var saved = {};
+    try { saved = JSON.parse(localStorage.getItem('mb_menu_photos') || '{}'); } catch(e) {}
+
+    var keys = Object.keys(saved);
+    if (keys.length === 0) {
+      alert('No photos uploaded yet! Click on any menu card image first to upload a photo.');
+      btn.innerHTML = '<svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Save My Photos';
+      btn.disabled = false;
+      return;
+    }
+
+    // Get the current page HTML
+    var html = document.documentElement.outerHTML;
+
+    // Build a new ITEM_PHOTOS object with all the uploaded photos baked in
+    var photoEntries = keys.map(function(k) {
+      return '  ' + JSON.stringify(k) + ': ' + JSON.stringify(saved[k]);
+    }).join(',\n');
+
+    var newItemPhotos = 'var ITEM_PHOTOS = {' + photoEntries + '};';
+
+    // Replace the existing ITEM_PHOTOS block in the HTML
+    html = html.replace(/var ITEM_PHOTOS\s*=\s*\{[\s\S]*?\};/, newItemPhotos);
+
+    // Download as a new HTML file
+    var blob = new Blob([html], { type: 'text/html' });
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'milano-bean-cafe-FINAL.html';
+    a.click();
+    URL.revokeObjectURL(a.href);
+
+    btn.innerHTML = '<svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Saved! Check Downloads';
+    setTimeout(function() {
+      btn.innerHTML = '<svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Save My Photos';
+      btn.disabled = false;
+    }, 3000);
   });
 })();
 
